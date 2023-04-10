@@ -1,3 +1,8 @@
+## Configuración de la app
+Agrega tu API KEY en el archivo local.properties
+```
+tmdb_api_key=YOUR_API_KEY
+```
 # BAZANDROID4-2023CAPSTONE
 
 # Reto de "The Movie DB"
