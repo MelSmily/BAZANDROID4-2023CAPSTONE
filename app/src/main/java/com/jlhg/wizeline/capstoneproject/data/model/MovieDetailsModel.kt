@@ -3,17 +3,44 @@ package com.jlhg.wizeline.capstoneproject.data.model
 import com.google.gson.annotations.SerializedName
 
 data class MovieDetailsModel(
-    @SerializedName("backdrop_path") val backdropPath: String?,
-    @SerializedName("genres") val genres: List<Gender>,
-    @SerializedName("title") val title: String,
-    @SerializedName("budget") val budget: Int,
-    @SerializedName("runtime") val runtime: Int?,
-    @SerializedName("overview") val overview: String,
-    @SerializedName("popularity") val popularity: Double,
-    @SerializedName("poster_path") val posterPath: String,
-    @SerializedName("release_date") val releaseDate: String
+    @SerializedName("id")
+    val id: Int?,
+    @SerializedName("backdrop_path")
+    val backdropPath: String?,
+    @SerializedName("genres")
+    val genres: List<Gender>?,
+    @SerializedName("original_language")
+    val originalLanguage: String?,
+    @SerializedName("original_title")
+    val originalTitle: String?,
+    @SerializedName("overview")
+    val overview: String?,
+    @SerializedName("poster_path")
+    val posterPath: String?,
+    @SerializedName("runtime")
+    val runtime: Int?,
+    @SerializedName("spoken_languages")
+    val spokenLanguages: List<Language>,
+    @SerializedName("status")
+    val status: String,
+    @SerializedName("vote_average")
+    val voteAverage: Double,
+    @SerializedName("vote_count")
+    val voteCount: Int,
 )
 
 data class Gender(
-    @SerializedName("name") val name: String
+    @SerializedName("id")
+    val id: Int,
+    @SerializedName("name")
+    val name: String
+)
+
+data class Language(
+    @SerializedName("english_name")
+    val englishName: String,
+    @SerializedName("iso_639_1")
+    val iso: String,
+    @SerializedName("name")
+    val name: String,
 )

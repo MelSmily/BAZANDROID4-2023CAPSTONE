@@ -1,45 +1,48 @@
 package com.jlhg.wizeline.capstoneproject.ui.detail
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jlhg.wizeline.capstoneproject.domain.usecases.GetDetailsUseCase
-import com.jlhg.wizeline.capstoneproject.domain.model.MovieDetailsItem
+import com.jlhg.wizeline.capstoneproject.domain.model.MovieDetail
+import com.jlhg.wizeline.capstoneproject.domain.usecases.db.GetMovieDetailsFromDBUseCase
+import com.jlhg.wizeline.capstoneproject.domain.usecases.db.InsertMovieDetailsToDBUseCase
+import com.jlhg.wizeline.capstoneproject.domain.usecases.network.GetDetailsUseCase
 import com.jlhg.wizeline.capstoneproject.ui.common.ApiStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
-    private val getDetailsUseCase: GetDetailsUseCase
+    private val getDetailsUseCase: GetDetailsUseCase,
+    private val insertMovieDetailsToDBUseCase: InsertMovieDetailsToDBUseCase,
+    private val getMovieDetailsFromDBUseCase: GetMovieDetailsFromDBUseCase
 ) : ViewModel() {
 
-    private var _movieDetails = MutableLiveData<MovieDetailsItem>()
-    private var _idMovie = MutableLiveData(1)
+    private var _movieDetails = MutableStateFlow(MovieDetail())
+    private var _status = MutableStateFlow(ApiStatus.LOADING)
 
-    val movieDetails: LiveData<MovieDetailsItem> get() = _movieDetails
-    val idMovie: LiveData<Int> get() = _idMovie
+    val movieDetails: StateFlow<MovieDetail> get() = _movieDetails
+    val status: StateFlow<ApiStatus> get() = _status
 
-    private var _status = MutableLiveData<ApiStatus>()
-    val status: LiveData<ApiStatus> get() = _status
-
-    init {
-        getAllDetails(idMovie.value!!)
-    }
-
-    private fun getAllDetails(id: Int) {
+    fun getAllDetails(id: Int) {
         _status.value = ApiStatus.LOADING
         viewModelScope.launch {
             try {
-                _movieDetails.value = getDetailsUseCase.getDetails(id)
+                val movieDetail = getDetailsUseCase.getDetails(id)!!
+                _movieDetails.value = movieDetail
+                insertMovieDetailsToDBUseCase.insertMovieDetails(movieDetail)
                 _status.value = ApiStatus.SUCCESS
-                Log.d("tag", "${movieDetails.value}")
             } catch (e: Exception) {
-                _status.value = ApiStatus.ERROR
-                Log.d("tag", "${e.message}")
+                val movieDetail = getMovieDetailsFromDBUseCase.getMovieDetails(id)
+                if (movieDetail != null) {
+                    _movieDetails.value = movieDetail
+                    _status.value = ApiStatus.SUCCESS
+                }else {
+                    _status.value = ApiStatus.ERROR
+                }
             }
 
         }

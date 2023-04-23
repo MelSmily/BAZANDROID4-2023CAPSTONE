@@ -12,6 +12,10 @@
     <string name="signin_error_dialog_title">Ocurrió un error</string>
     <string name="signin_error_dialog_body">No se pudó registrar el usuario, intenta más tarde</string>
     <string name="signin_button">Registrar</string>
-
-
+    <string name="error_animation_txt">Lo sentimos no hay datos disponibles,\nrevisa tu conexión a internet o intenta más tarde</string>
+    <string name="detail_txt_duration">Duración</string>
+    <string name="details_txt_lenguage">Languaje</string>
+    <string name="details_txt_status">Estatus</string>
+    <string name="details_txt_description">Descripción</string>
+    <string name="details_txt_rate">%1$.3f / 10 IMDb</string>
 </resources>

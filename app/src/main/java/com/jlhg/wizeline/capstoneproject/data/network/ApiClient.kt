@@ -12,29 +12,21 @@ interface ApiClient {
 
     @GET(value = "movie/now_playing?")
     suspend fun getNowPlayingMovies(
-        @Query("api_key") apiKey: String = BuildConfig.TMDB_API_KEY,
-        @Query("language") language: String = "es-ES",
         @Query("page") page: Int = 1
     ): Response<ListMoviesModel>
 
     @GET(value = "movie/upcoming?")
     suspend fun getLastestMovies(
-        @Query("api_key") apiKey: String = BuildConfig.TMDB_API_KEY,
-        @Query("language") language: String = "es-ES",
         @Query("page") page: Int = 1
     ): Response<ListMoviesModel>
 
     @GET(value = "movie/top_rated?")
     suspend fun getTopRatedMovies(
-        @Query("api_key") apiKey: String = BuildConfig.TMDB_API_KEY,
-        @Query("language") language: String = "es-ES",
         @Query("page") page: Int = 1
     ): Response<ListMoviesModel>
 
     @GET("movie/{movieId}?")
     suspend fun getMovieId(
         @Path("movieId") movieId: Int,
-        @Query("api_key") apiKey: String = BuildConfig.TMDB_API_KEY,
-        @Query("language") language: String = "es-ES",
     ): Response<MovieDetailsModel>
 }

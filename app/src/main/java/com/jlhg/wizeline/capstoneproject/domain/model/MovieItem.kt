@@ -1,6 +1,9 @@
 package com.jlhg.wizeline.capstoneproject.domain.model
 
 import com.jlhg.wizeline.capstoneproject.core.Credentials
+import com.jlhg.wizeline.capstoneproject.data.db.entities.LastestMoviesEntity
+import com.jlhg.wizeline.capstoneproject.data.db.entities.NowPlayingMoviesEntity
+import com.jlhg.wizeline.capstoneproject.data.db.entities.TopRatedMoviesEntity
 import com.jlhg.wizeline.capstoneproject.data.model.ResultApi
 
 data class MovieItem(
@@ -12,4 +15,28 @@ data class MovieItem(
 fun ResultApi.toDomain(): MovieItem {
     val poster = "${Credentials.PATH_IMG}${this.posterPath}"
     return MovieItem(id, title, poster)
+}
+
+fun NowPlayingMoviesEntity.toDomain(): MovieItem{
+    return MovieItem(id, title, posterPath)
+}
+
+fun TopRatedMoviesEntity.toDomain(): MovieItem{
+    return MovieItem(id, title, posterPath)
+}
+
+fun LastestMoviesEntity.toDomain(): MovieItem{
+    return MovieItem(id, title, posterPath)
+}
+
+fun MovieItem.toNowPlayingMoviesEntity(): NowPlayingMoviesEntity {
+    return NowPlayingMoviesEntity(id, title, posterPath)
+}
+
+fun MovieItem.toTopRatedMoviesEntity(): TopRatedMoviesEntity {
+    return TopRatedMoviesEntity(id, title, posterPath)
+}
+
+fun MovieItem.toLastestMoviesEntity(): LastestMoviesEntity {
+    return LastestMoviesEntity(id, title, posterPath)
 }

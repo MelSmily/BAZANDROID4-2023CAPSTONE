@@ -1,4 +1,4 @@
-package com.jlhg.wizeline.capstoneproject.domain.usecases
+package com.jlhg.wizeline.capstoneproject.domain.usecases.network
 
 import com.jlhg.wizeline.capstoneproject.data.network.MovieRepository
 import com.jlhg.wizeline.capstoneproject.domain.model.MovieItem

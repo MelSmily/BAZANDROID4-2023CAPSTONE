@@ -1,8 +1,8 @@
 package com.jlhg.wizeline.capstoneproject.ui.home.screen
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -14,14 +14,17 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.jlhg.wizeline.capstoneproject.R
 import com.jlhg.wizeline.capstoneproject.domain.model.MovieItem
 import com.jlhg.wizeline.capstoneproject.ui.common.ApiStatus
+import com.jlhg.wizeline.capstoneproject.ui.component.ErrorAnimation
 import com.jlhg.wizeline.capstoneproject.ui.component.Loader
 import com.jlhg.wizeline.capstoneproject.ui.component.MovieListItem
+import com.jlhg.wizeline.capstoneproject.ui.detail.DetailActivity
+import com.jlhg.wizeline.capstoneproject.ui.detail.DetailActivity.Companion.MOVIE_ID
 import com.jlhg.wizeline.capstoneproject.ui.home.HomeViewModel
 
 
@@ -29,8 +32,9 @@ import com.jlhg.wizeline.capstoneproject.ui.home.HomeViewModel
 @Composable
 fun NowPlayingScreen(homeViewModel: HomeViewModel) {
     LaunchedEffect(Unit) {
-        homeViewModel.getPopularMovies()
+        homeViewModel.getNowPlayingMovies()
     }
+    val context = LocalContext.current
     val status: ApiStatus by homeViewModel.status.observeAsState(initial = ApiStatus.LOADING)
     val movies: List<MovieItem> by homeViewModel.moviesList.observeAsState(listOf())
     Column(
@@ -45,7 +49,11 @@ fun NowPlayingScreen(homeViewModel: HomeViewModel) {
                     contentPadding = PaddingValues(10.dp)
                 ) {
                     items(movies) {item ->
-                        MovieListItem(item)
+                        MovieListItem(item){
+                            val intent = Intent(context, DetailActivity::class.java)
+                            intent.putExtra(MOVIE_ID, it)
+                            context.startActivity(intent)
+                        }
                     }
                 }
             }
@@ -53,12 +61,7 @@ fun NowPlayingScreen(homeViewModel: HomeViewModel) {
                 Loader()
             }
             ApiStatus.ERROR -> {
-                Image(
-                    painter = painterResource(R.drawable.ic_launcher_foreground),
-                    contentDescription = null,
-                    modifier = Modifier.fillMaxSize(),
-                    contentScale = ContentScale.Crop
-                )
+                ErrorAnimation()
             }
         }
     }

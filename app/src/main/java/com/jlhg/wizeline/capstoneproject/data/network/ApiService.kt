@@ -36,7 +36,8 @@ class ApiService @Inject constructor(private val apiClient: ApiClient) {
     suspend fun getMovieId(id: Int): MovieDetailsModel? {
         return withContext(Dispatchers.IO) {
             val response = apiClient.getMovieId(id)
-            // TODO agregar control de errores
+            Log.d("tag", "getMovieId code: ${response.code()}")
+            Log.d("tag", "getMovieId code: $response")
             response.body()
         }
     }

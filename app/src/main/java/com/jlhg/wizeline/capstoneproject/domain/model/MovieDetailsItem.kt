@@ -1,36 +1,71 @@
 package com.jlhg.wizeline.capstoneproject.domain.model
 
 import com.jlhg.wizeline.capstoneproject.core.Credentials
-import com.jlhg.wizeline.capstoneproject.data.model.MovieDetailsModel
-import java.text.NumberFormat
+import com.jlhg.wizeline.capstoneproject.data.db.entities.MovieDetailsEntity
+import com.jlhg.wizeline.capstoneproject.data.model.*
 
-data class MovieDetailsItem(
-    val backdropPath: String,
-    val genders: String,
-    val title: String,
-    val overview: String,
-    val budget: String,
-    val popularity: Double,
-    val posterPath: String,
-    val releaseDate: String,
-    val runtime: String,
+data class MovieDetail(
+    val id: Int = 0,
+    val backdropPath: String = "",
+    val genres: List<Gender> = listOf(),
+    val originalLanguage: String = "",
+    val originalTitle: String = "",
+    val overview: String = "",
+    val posterPath: String = "",
+    val runtime: Int = 0,
+    val spokenLanguages: List<Language> = listOf(),
+    val status: String = "",
+    val voteAverage: Double = 0.0,
+    val voteCount: Int = 0
 )
 
-fun MovieDetailsModel.toDomain(): MovieDetailsItem {
-    val backdropPath = if (backdropPath.isNullOrEmpty()) "" else "${Credentials.PATH_IMG}${this.backdropPath}"
-    val posterPath = "${Credentials.PATH_IMG}${this.posterPath}"
-    val budget = if (this.budget == 0) "- - -" else getFormattedNumber(this.budget)
-    val runtime = if (this.runtime == null) "" else "${this.runtime}"
-
-    val genres = mutableListOf<String>()
-    for (i in this.genres) genres.add(i.name)
-    val genders = genres.joinToString(separator = ", ").plus(".")
-
-    return MovieDetailsItem(backdropPath, genders, title,
-        overview, budget, popularity, posterPath, releaseDate, runtime)
+fun MovieDetailsModel.toDomain(): MovieDetail {
+    return MovieDetail(
+        id = id ?: 0,
+        backdropPath = if (backdropPath.isNullOrEmpty()) "" else "${Credentials.PATH_IMG}${this.backdropPath}",
+        genres = genres ?: listOf(),
+        originalLanguage = originalLanguage ?: "",
+        originalTitle = originalTitle ?: "",
+        overview = overview ?: "",
+        posterPath = "${Credentials.PATH_IMG}${this.posterPath}",
+        runtime = runtime ?: 0,
+        spokenLanguages = spokenLanguages,
+        status = status,
+        voteAverage = voteAverage,
+        voteCount = voteCount
+    )
 }
 
-private fun getFormattedNumber(tip: Int): String {
-    return NumberFormat.getCurrencyInstance().format(tip)
+fun MovieDetailsEntity.toDomain(): MovieDetail? {
+    return MovieDetail(
+        id = id,
+        backdropPath = backdropPath,
+        genres = genres,
+        originalLanguage = originalLanguage,
+        originalTitle = originalTitle,
+        overview = overview,
+        posterPath = posterPath,
+        runtime = runtime,
+        spokenLanguages = spokenLanguages,
+        status = status,
+        voteAverage = voteAverage,
+        voteCount = voteCount
+    )
 }
 
+fun MovieDetail.toMovieDetailsEntity(): MovieDetailsEntity {
+    return MovieDetailsEntity(
+        id = id,
+        backdropPath = backdropPath,
+        genres = genres,
+        originalLanguage = originalLanguage,
+        originalTitle = originalTitle,
+        overview = overview,
+        posterPath = posterPath,
+        runtime = runtime,
+        spokenLanguages = spokenLanguages,
+        status = status,
+        voteAverage = voteAverage,
+        voteCount = voteCount
+    )
+}

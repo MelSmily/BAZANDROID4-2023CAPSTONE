@@ -2,7 +2,7 @@ package com.jlhg.wizeline.capstoneproject.data.network
 
 import com.jlhg.wizeline.capstoneproject.core.Credentials
 import com.jlhg.wizeline.capstoneproject.data.model.ListMoviesModel
-import com.jlhg.wizeline.capstoneproject.domain.model.MovieDetailsItem
+import com.jlhg.wizeline.capstoneproject.domain.model.MovieDetail
 import com.jlhg.wizeline.capstoneproject.domain.model.MovieItem
 import com.jlhg.wizeline.capstoneproject.domain.model.toDomain
 import javax.inject.Inject
@@ -31,7 +31,7 @@ class MovieRepository @Inject constructor(
 
     private fun ListMoviesModel.pTotal() = totalPages
 
-    suspend fun getDetailsMovie(id: Int): MovieDetailsItem? {
+    suspend fun getDetailsMovie(id: Int): MovieDetail? {
         val response = apiService.getMovieId(id)
         return response?.toDomain()
     }

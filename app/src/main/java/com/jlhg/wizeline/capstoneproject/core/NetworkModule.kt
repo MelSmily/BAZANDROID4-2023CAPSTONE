@@ -1,10 +1,12 @@
 package com.jlhg.wizeline.capstoneproject.core
 
+import androidx.annotation.NonNull
 import com.jlhg.wizeline.capstoneproject.data.network.ApiClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -13,10 +15,20 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
+    @Provides
+    @Singleton
+    fun provideHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(RequestInterceptor())
+            .build()
+    }
+
     @Singleton
     @Provides
-    fun provideRetrofit(): Retrofit {
-        return Retrofit.Builder().baseUrl(Credentials.BASE_URL)
+    fun provideRetrofit(@NonNull okHttpClient: OkHttpClient): Retrofit {
+        return Retrofit.Builder()
+            .client(okHttpClient)
+            .baseUrl(Credentials.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
