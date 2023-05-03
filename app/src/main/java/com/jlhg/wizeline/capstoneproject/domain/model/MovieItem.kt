@@ -1,10 +1,10 @@
 package com.jlhg.wizeline.capstoneproject.domain.model
 
-import com.jlhg.wizeline.capstoneproject.core.Credentials
-import com.jlhg.wizeline.capstoneproject.data.db.entities.LastestMoviesEntity
-import com.jlhg.wizeline.capstoneproject.data.db.entities.NowPlayingMoviesEntity
-import com.jlhg.wizeline.capstoneproject.data.db.entities.TopRatedMoviesEntity
-import com.jlhg.wizeline.capstoneproject.data.model.ResultApi
+import com.jlhg.wizeline.capstoneproject.remote.Credentials
+import com.jlhg.wizeline.capstoneproject.local.db.entities.LastestMoviesEntity
+import com.jlhg.wizeline.capstoneproject.local.db.entities.NowPlayingMoviesEntity
+import com.jlhg.wizeline.capstoneproject.local.db.entities.TopRatedMoviesEntity
+import com.jlhg.wizeline.capstoneproject.remote.model.ResultApi
 
 data class MovieItem(
     val id: Int,

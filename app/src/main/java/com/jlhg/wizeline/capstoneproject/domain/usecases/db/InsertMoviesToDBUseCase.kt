@@ -1,6 +1,6 @@
 package com.jlhg.wizeline.capstoneproject.domain.usecases.db
 
-import com.jlhg.wizeline.capstoneproject.data.db.DatabaseRepository
+import com.jlhg.wizeline.capstoneproject.local.db.DatabaseRepository
 import com.jlhg.wizeline.capstoneproject.domain.model.*
 import javax.inject.Inject
 

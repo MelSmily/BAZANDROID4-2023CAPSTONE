@@ -1,4 +1,4 @@
-package com.jlhg.wizeline.capstoneproject.data.model
+package com.jlhg.wizeline.capstoneproject.remote.model
 
 import com.google.gson.annotations.SerializedName
 

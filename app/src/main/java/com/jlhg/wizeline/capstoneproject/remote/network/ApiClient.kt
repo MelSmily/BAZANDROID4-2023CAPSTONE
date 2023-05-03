@@ -1,8 +1,8 @@
-package com.jlhg.wizeline.capstoneproject.data.network
+package com.jlhg.wizeline.capstoneproject.remote.network
 
 import com.jlhg.wizeline.capstoneproject.BuildConfig
-import com.jlhg.wizeline.capstoneproject.data.model.ListMoviesModel
-import com.jlhg.wizeline.capstoneproject.data.model.MovieDetailsModel
+import com.jlhg.wizeline.capstoneproject.remote.model.ListMoviesModel
+import com.jlhg.wizeline.capstoneproject.remote.model.MovieDetailsModel
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

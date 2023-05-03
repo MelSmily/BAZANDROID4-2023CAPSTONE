@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.AsyncImage
 import com.jlhg.wizeline.capstoneproject.R
-import com.jlhg.wizeline.capstoneproject.data.model.Gender
+import com.jlhg.wizeline.capstoneproject.remote.model.Gender
 import com.jlhg.wizeline.capstoneproject.domain.model.MovieDetail
 import com.jlhg.wizeline.capstoneproject.ui.common.ApiStatus
 import com.jlhg.wizeline.capstoneproject.ui.component.ErrorAnimation

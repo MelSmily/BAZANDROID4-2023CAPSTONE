@@ -1,10 +1,10 @@
-package com.jlhg.wizeline.capstoneproject.data.db.converters
+package com.jlhg.wizeline.capstoneproject.local.db.converters
 
 import androidx.room.ProvidedTypeConverter
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.jlhg.wizeline.capstoneproject.data.model.Gender
+import com.jlhg.wizeline.capstoneproject.remote.model.Gender
 
 @ProvidedTypeConverter
 class GenderConverter {

@@ -1,9 +1,9 @@
-package com.jlhg.wizeline.capstoneproject.data.db.entities
+package com.jlhg.wizeline.capstoneproject.local.db.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.jlhg.wizeline.capstoneproject.data.model.Gender
-import com.jlhg.wizeline.capstoneproject.data.model.Language
+import com.jlhg.wizeline.capstoneproject.remote.model.Gender
+import com.jlhg.wizeline.capstoneproject.remote.model.Language
 
 @Entity(tableName = "movie_details")
 data class MovieDetailsEntity(

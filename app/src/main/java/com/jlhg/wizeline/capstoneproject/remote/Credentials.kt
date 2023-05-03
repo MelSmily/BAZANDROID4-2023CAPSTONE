@@ -1,4 +1,4 @@
-package com.jlhg.wizeline.capstoneproject.core
+package com.jlhg.wizeline.capstoneproject.remote
 
 object Credentials {
     const val BASE_URL = "https://api.themoviedb.org/3/"

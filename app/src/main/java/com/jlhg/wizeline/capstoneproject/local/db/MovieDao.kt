@@ -1,10 +1,10 @@
-package com.jlhg.wizeline.capstoneproject.data.db
+package com.jlhg.wizeline.capstoneproject.local.db
 
 import androidx.room.*
-import com.jlhg.wizeline.capstoneproject.data.db.entities.LastestMoviesEntity
-import com.jlhg.wizeline.capstoneproject.data.db.entities.MovieDetailsEntity
-import com.jlhg.wizeline.capstoneproject.data.db.entities.NowPlayingMoviesEntity
-import com.jlhg.wizeline.capstoneproject.data.db.entities.TopRatedMoviesEntity
+import com.jlhg.wizeline.capstoneproject.local.db.entities.LastestMoviesEntity
+import com.jlhg.wizeline.capstoneproject.local.db.entities.MovieDetailsEntity
+import com.jlhg.wizeline.capstoneproject.local.db.entities.NowPlayingMoviesEntity
+import com.jlhg.wizeline.capstoneproject.local.db.entities.TopRatedMoviesEntity
 
 @Dao
 interface MovieDao {

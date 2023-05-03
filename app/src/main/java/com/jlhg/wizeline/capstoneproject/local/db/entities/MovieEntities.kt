@@ -1,4 +1,4 @@
-package com.jlhg.wizeline.capstoneproject.data.db.entities
+package com.jlhg.wizeline.capstoneproject.local.db.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -1,7 +1,7 @@
-package com.jlhg.wizeline.capstoneproject.data.network
+package com.jlhg.wizeline.capstoneproject.remote.network
 
-import com.jlhg.wizeline.capstoneproject.core.Credentials
-import com.jlhg.wizeline.capstoneproject.data.model.ListMoviesModel
+import com.jlhg.wizeline.capstoneproject.remote.Credentials
+import com.jlhg.wizeline.capstoneproject.remote.model.ListMoviesModel
 import com.jlhg.wizeline.capstoneproject.domain.model.MovieDetail
 import com.jlhg.wizeline.capstoneproject.domain.model.MovieItem
 import com.jlhg.wizeline.capstoneproject.domain.model.toDomain

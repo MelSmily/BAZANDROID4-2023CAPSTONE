@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jlhg.wizeline.capstoneproject.data.response.LoginResult
+import com.jlhg.wizeline.capstoneproject.remote.response.LoginResult
 import com.jlhg.wizeline.capstoneproject.domain.usecases.network.CreateAccountUseCase
 import com.jlhg.wizeline.capstoneproject.domain.usecases.network.GetUserLoggedUseCase
 import com.jlhg.wizeline.capstoneproject.domain.usecases.network.LoginUseCase

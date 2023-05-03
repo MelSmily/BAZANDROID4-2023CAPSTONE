@@ -1,8 +1,8 @@
-package com.jlhg.wizeline.capstoneproject.data.network
+package com.jlhg.wizeline.capstoneproject.remote.network
 
 import android.util.Log
-import com.jlhg.wizeline.capstoneproject.data.model.ListMoviesModel
-import com.jlhg.wizeline.capstoneproject.data.model.MovieDetailsModel
+import com.jlhg.wizeline.capstoneproject.remote.model.ListMoviesModel
+import com.jlhg.wizeline.capstoneproject.remote.model.MovieDetailsModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

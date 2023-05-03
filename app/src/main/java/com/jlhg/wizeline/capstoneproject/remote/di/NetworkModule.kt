@@ -1,7 +1,9 @@
-package com.jlhg.wizeline.capstoneproject.core
+package com.jlhg.wizeline.capstoneproject.remote.di
 
 import androidx.annotation.NonNull
-import com.jlhg.wizeline.capstoneproject.data.network.ApiClient
+import com.jlhg.wizeline.capstoneproject.remote.Credentials
+import com.jlhg.wizeline.capstoneproject.remote.RequestInterceptor
+import com.jlhg.wizeline.capstoneproject.remote.network.ApiClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

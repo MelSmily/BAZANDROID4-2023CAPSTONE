@@ -1,8 +1,10 @@
 package com.jlhg.wizeline.capstoneproject.domain.model
 
-import com.jlhg.wizeline.capstoneproject.core.Credentials
-import com.jlhg.wizeline.capstoneproject.data.db.entities.MovieDetailsEntity
-import com.jlhg.wizeline.capstoneproject.data.model.*
+import com.jlhg.wizeline.capstoneproject.remote.Credentials
+import com.jlhg.wizeline.capstoneproject.local.db.entities.MovieDetailsEntity
+import com.jlhg.wizeline.capstoneproject.remote.model.Gender
+import com.jlhg.wizeline.capstoneproject.remote.model.Language
+import com.jlhg.wizeline.capstoneproject.remote.model.MovieDetailsModel
 
 data class MovieDetail(
     val id: Int = 0,

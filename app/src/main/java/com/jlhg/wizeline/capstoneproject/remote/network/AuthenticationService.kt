@@ -1,8 +1,8 @@
-package com.jlhg.wizeline.capstoneproject.data.network
+package com.jlhg.wizeline.capstoneproject.remote.network
 
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseUser
-import com.jlhg.wizeline.capstoneproject.data.response.LoginResult
+import com.jlhg.wizeline.capstoneproject.remote.response.LoginResult
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

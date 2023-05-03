@@ -1,11 +1,11 @@
-package com.jlhg.wizeline.capstoneproject.di
+package com.jlhg.wizeline.capstoneproject.local.di
 
 import android.content.Context
 import androidx.room.Room
-import com.jlhg.wizeline.capstoneproject.data.db.Database
-import com.jlhg.wizeline.capstoneproject.data.db.MovieDao
-import com.jlhg.wizeline.capstoneproject.data.db.converters.GenderConverter
-import com.jlhg.wizeline.capstoneproject.data.db.converters.LanguageConverter
+import com.jlhg.wizeline.capstoneproject.local.db.Database
+import com.jlhg.wizeline.capstoneproject.local.db.MovieDao
+import com.jlhg.wizeline.capstoneproject.local.db.converters.GenderConverter
+import com.jlhg.wizeline.capstoneproject.local.db.converters.LanguageConverter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

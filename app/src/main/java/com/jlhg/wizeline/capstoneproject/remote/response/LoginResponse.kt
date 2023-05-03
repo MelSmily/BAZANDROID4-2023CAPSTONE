@@ -1,4 +1,4 @@
-package com.jlhg.wizeline.capstoneproject.data.response
+package com.jlhg.wizeline.capstoneproject.remote.response
 
 sealed class LoginResult {
     object Error : LoginResult()

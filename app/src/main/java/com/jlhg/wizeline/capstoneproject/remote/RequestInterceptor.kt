@@ -1,4 +1,4 @@
-package com.jlhg.wizeline.capstoneproject.core
+package com.jlhg.wizeline.capstoneproject.remote
 
 import com.jlhg.wizeline.capstoneproject.BuildConfig
 import okhttp3.Interceptor

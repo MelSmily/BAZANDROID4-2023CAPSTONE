@@ -1,6 +1,6 @@
 package com.jlhg.wizeline.capstoneproject.domain.usecases.network
 
-import com.jlhg.wizeline.capstoneproject.data.network.AuthenticationService
+import com.jlhg.wizeline.capstoneproject.remote.network.AuthenticationService
 import javax.inject.Inject
 
 class GetUserLoggedUseCase @Inject constructor(private val authenticationService: AuthenticationService) {

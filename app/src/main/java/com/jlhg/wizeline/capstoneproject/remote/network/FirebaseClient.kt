@@ -1,4 +1,4 @@
-package com.jlhg.wizeline.capstoneproject.data.network
+package com.jlhg.wizeline.capstoneproject.remote.network
 
 import com.google.firebase.auth.FirebaseAuth
 import javax.inject.Inject
