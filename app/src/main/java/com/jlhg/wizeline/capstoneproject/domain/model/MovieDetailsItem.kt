@@ -1,10 +1,8 @@
 package com.jlhg.wizeline.capstoneproject.domain.model
 
-import com.jlhg.wizeline.capstoneproject.remote.Credentials
-import com.jlhg.wizeline.capstoneproject.local.db.entities.MovieDetailsEntity
-import com.jlhg.wizeline.capstoneproject.remote.model.Gender
-import com.jlhg.wizeline.capstoneproject.remote.model.Language
-import com.jlhg.wizeline.capstoneproject.remote.model.MovieDetailsModel
+import com.jlhg.wizeline.remote.Credentials
+import com.jlhg.wizeline.remote.model.MovieDetailsModel
+import com.jlhg.wizeline.local.db.entities.MovieDetailsEntity
 
 data class MovieDetail(
     val id: Int = 0,
@@ -21,53 +19,88 @@ data class MovieDetail(
     val voteCount: Int = 0
 )
 
-fun MovieDetailsModel.toDomain(): MovieDetail {
+data class Gender(
+    val id: Int,
+    val name: String
+)
+
+data class Language(
+    val englishName: String,
+    val iso: String,
+    val name: String,
+)
+
+fun com.jlhg.wizeline.remote.model.MovieDetailsModel.toDomain(): MovieDetail {
     return MovieDetail(
         id = id ?: 0,
-        backdropPath = if (backdropPath.isNullOrEmpty()) "" else "${Credentials.PATH_IMG}${this.backdropPath}",
-        genres = genres ?: listOf(),
+        backdropPath = if (backdropPath.isNullOrEmpty()) "" else "${com.jlhg.wizeline.remote.Credentials.PATH_IMG}${this.backdropPath}",
+        genres = genres!!.map { it.toDomain() },
         originalLanguage = originalLanguage ?: "",
         originalTitle = originalTitle ?: "",
         overview = overview ?: "",
-        posterPath = "${Credentials.PATH_IMG}${this.posterPath}",
+        posterPath = "${com.jlhg.wizeline.remote.Credentials.PATH_IMG}${this.posterPath}",
         runtime = runtime ?: 0,
-        spokenLanguages = spokenLanguages,
+        spokenLanguages = spokenLanguages.map { it.toDomain() },
         status = status,
         voteAverage = voteAverage,
         voteCount = voteCount
     )
 }
 
-fun MovieDetailsEntity.toDomain(): MovieDetail? {
+private fun com.jlhg.wizeline.remote.model.Gender.toDomain(): Gender{
+    return Gender(id, name)
+}
+
+private fun com.jlhg.wizeline.remote.model.Language.toDomain(): Language{
+    return Language(englishName, iso, name)
+}
+
+fun com.jlhg.wizeline.local.db.entities.MovieDetailsEntity.toDomain(): MovieDetail {
     return MovieDetail(
         id = id,
         backdropPath = backdropPath,
-        genres = genres,
+        genres = genres.map { it.toDomain() },
         originalLanguage = originalLanguage,
         originalTitle = originalTitle,
         overview = overview,
         posterPath = posterPath,
         runtime = runtime,
-        spokenLanguages = spokenLanguages,
+        spokenLanguages = spokenLanguages.map { it.toDomain() },
         status = status,
         voteAverage = voteAverage,
         voteCount = voteCount
     )
 }
 
-fun MovieDetail.toMovieDetailsEntity(): MovieDetailsEntity {
-    return MovieDetailsEntity(
+private fun com.jlhg.wizeline.local.db.entities.Gender.toDomain(): Gender{
+    return Gender(id, name)
+}
+
+private fun com.jlhg.wizeline.local.db.entities.Language.toDomain(): Language{
+    return Language(englishName, iso, name)
+}
+
+fun MovieDetail.toMovieDetailsEntity(): com.jlhg.wizeline.local.db.entities.MovieDetailsEntity {
+    return com.jlhg.wizeline.local.db.entities.MovieDetailsEntity(
         id = id,
         backdropPath = backdropPath,
-        genres = genres,
+        genres = genres.map { it.toEntity() },
         originalLanguage = originalLanguage,
         originalTitle = originalTitle,
         overview = overview,
         posterPath = posterPath,
         runtime = runtime,
-        spokenLanguages = spokenLanguages,
+        spokenLanguages = spokenLanguages.map { it.toEntity() },
         status = status,
         voteAverage = voteAverage,
         voteCount = voteCount
     )
+}
+
+private fun Gender.toEntity(): com.jlhg.wizeline.local.db.entities.Gender {
+    return com.jlhg.wizeline.local.db.entities.Gender(id, name)
+}
+
+private fun Language.toEntity(): com.jlhg.wizeline.local.db.entities.Language {
+    return com.jlhg.wizeline.local.db.entities.Language(englishName, iso, name)
 }

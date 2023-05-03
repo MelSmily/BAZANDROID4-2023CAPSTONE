@@ -1,20 +1,24 @@
 package com.jlhg.wizeline.capstoneproject.domain.usecases.network
 
-import com.jlhg.wizeline.capstoneproject.remote.network.MovieRepository
+import com.jlhg.wizeline.remote.network.MovieRepository
 import com.jlhg.wizeline.capstoneproject.domain.model.MovieItem
+import com.jlhg.wizeline.capstoneproject.domain.model.toDomain
 import javax.inject.Inject
 
-class GetMoviesUseCase @Inject constructor(private val movieRepository: MovieRepository) {
+class GetMoviesUseCase @Inject constructor(private val movieRepository: com.jlhg.wizeline.remote.network.MovieRepository) {
 
     suspend fun getTopRatedMovies(page: Int): MutableList<MovieItem> {
-        return movieRepository.getTopRatedMovies(page)
+        val response = movieRepository.getTopRatedMovies(page)
+        return response?.results?.map { it.toDomain() } as MutableList<MovieItem>
     }
 
     suspend fun getNowPlayingMovies(page: Int): MutableList<MovieItem> {
-        return movieRepository.getNowPlayingMovies(page)
+        val response = movieRepository.getNowPlayingMovies(page)
+        return response?.results?.map { it.toDomain() } as MutableList<MovieItem>
     }
 
     suspend fun getLastestMovies(page: Int): MutableList<MovieItem> {
-        return movieRepository.getLastestMovies(page)
+        val response = movieRepository.getLastestMovies(page)
+        return response?.results?.map { it.toDomain() } as MutableList<MovieItem>
     }
 }

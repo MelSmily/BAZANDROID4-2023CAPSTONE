@@ -1,10 +1,10 @@
 package com.jlhg.wizeline.capstoneproject.domain.usecases.db
 
-import com.jlhg.wizeline.capstoneproject.local.db.DatabaseRepository
+import com.jlhg.wizeline.local.db.DatabaseRepository
 import com.jlhg.wizeline.capstoneproject.domain.model.*
 import javax.inject.Inject
 
-class InsertMoviesToDBUseCase @Inject constructor(private val databaseRepository: DatabaseRepository) {
+class InsertMoviesToDBUseCase @Inject constructor(private val databaseRepository: com.jlhg.wizeline.local.db.DatabaseRepository) {
     suspend fun insertNowPlayingMovies(movies: MutableList<MovieItem>){
         databaseRepository.insertNowPlayingMovies(movies.map { it.toNowPlayingMoviesEntity() })
     }

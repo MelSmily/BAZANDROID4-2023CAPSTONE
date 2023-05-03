@@ -1,6 +1,5 @@
 package com.jlhg.wizeline.capstoneproject.ui.detail
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jlhg.wizeline.capstoneproject.domain.model.MovieDetail

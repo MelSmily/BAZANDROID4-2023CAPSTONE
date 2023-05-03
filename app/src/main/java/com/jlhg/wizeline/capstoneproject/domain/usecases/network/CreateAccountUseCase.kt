@@ -1,10 +1,10 @@
 package com.jlhg.wizeline.capstoneproject.domain.usecases.network
 
-import com.jlhg.wizeline.capstoneproject.remote.network.AuthenticationService
+import com.jlhg.wizeline.remote.network.AuthenticationService
 import javax.inject.Inject
 
 class CreateAccountUseCase @Inject constructor(
-    private val authenticationService: AuthenticationService,
+    private val authenticationService: com.jlhg.wizeline.remote.network.AuthenticationService,
 ) {
 
     suspend operator fun invoke(email: String, password: String): Boolean {

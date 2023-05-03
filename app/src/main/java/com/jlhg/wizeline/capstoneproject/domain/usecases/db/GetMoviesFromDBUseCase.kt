@@ -1,11 +1,11 @@
 package com.jlhg.wizeline.capstoneproject.domain.usecases.db
 
-import com.jlhg.wizeline.capstoneproject.local.db.DatabaseRepository
+import com.jlhg.wizeline.local.db.DatabaseRepository
 import com.jlhg.wizeline.capstoneproject.domain.model.MovieItem
 import com.jlhg.wizeline.capstoneproject.domain.model.toDomain
 import javax.inject.Inject
 
-class GetMoviesFromDBUseCase @Inject constructor(private val databaseRepository: DatabaseRepository) {
+class GetMoviesFromDBUseCase @Inject constructor(private val databaseRepository: com.jlhg.wizeline.local.db.DatabaseRepository) {
     suspend fun getNowPlayingMovies(): MutableList<MovieItem> {
         return databaseRepository.getNowPlayingMovies().map { it.toDomain() } as MutableList<MovieItem>
     }
