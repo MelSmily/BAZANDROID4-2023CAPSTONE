@@ -4,15 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jlhg.wizeline.capstoneproject.domain.usecases.network.GetMoviesUseCase
 import com.jlhg.wizeline.capstoneproject.domain.model.MovieItem
 import com.jlhg.wizeline.capstoneproject.domain.usecases.db.GetMoviesFromDBUseCase
 import com.jlhg.wizeline.capstoneproject.domain.usecases.db.InsertMoviesToDBUseCase
+import com.jlhg.wizeline.capstoneproject.domain.usecases.network.GetMoviesUseCase
 import com.jlhg.wizeline.capstoneproject.domain.usecases.network.LogoutUseCase
 import com.jlhg.wizeline.capstoneproject.ui.common.ApiStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
+import kotlinx.coroutines.launch
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(

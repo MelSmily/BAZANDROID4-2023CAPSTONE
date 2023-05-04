@@ -10,8 +10,15 @@ import com.jlhg.wizeline.local.db.entities.MovieDetailsEntity
 import com.jlhg.wizeline.local.db.entities.NowPlayingMoviesEntity
 import com.jlhg.wizeline.local.db.entities.TopRatedMoviesEntity
 
-@Database(entities = [NowPlayingMoviesEntity::class, TopRatedMoviesEntity::class, LastestMoviesEntity::class, MovieDetailsEntity::class], version = 1, exportSchema = false)
+@Database(
+    entities = [
+        NowPlayingMoviesEntity::class, TopRatedMoviesEntity::class,
+        LastestMoviesEntity::class, MovieDetailsEntity::class
+    ],
+    version = 1,
+    exportSchema = false
+)
 @TypeConverters(GenderConverter::class, LanguageConverter::class)
-abstract class Database: RoomDatabase() {
+abstract class Database : RoomDatabase() {
     abstract fun movieDao(): MovieDao
 }

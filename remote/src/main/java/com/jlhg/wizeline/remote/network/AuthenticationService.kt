@@ -1,12 +1,10 @@
 package com.jlhg.wizeline.remote.network
 
 import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.FirebaseUser
 import com.jlhg.wizeline.remote.response.LoginResult
-import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 import javax.inject.Singleton
-
+import kotlinx.coroutines.tasks.await
 
 @Singleton
 class AuthenticationService @Inject constructor(private val firebase: FirebaseClient) {
@@ -15,16 +13,18 @@ class AuthenticationService @Inject constructor(private val firebase: FirebaseCl
         firebase.auth.signInWithEmailAndPassword(email, password).await()
     }.toLoginResult()
 
-    suspend fun createAccount(email: String, password: String): AuthResult? {
-        return firebase.auth.createUserWithEmailAndPassword(email, password).await()
+    suspend fun createAccount(email: String, password: String): Boolean {
+        val auth = firebase.auth.createUserWithEmailAndPassword(email, password).await()
+        return auth != null
     }
 
-    suspend fun logout() {
+    fun logout() {
         firebase.auth.signOut()
     }
 
-    suspend fun currentUser(): FirebaseUser? {
-        return firebase.auth.currentUser
+    fun currentUser(): Boolean {
+        val user = firebase.auth.currentUser
+        return user != null
     }
 
     private fun Result<AuthResult>.toLoginResult() = when (getOrNull()) {

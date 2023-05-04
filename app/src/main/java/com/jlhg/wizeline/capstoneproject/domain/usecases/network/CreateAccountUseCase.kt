@@ -4,10 +4,10 @@ import com.jlhg.wizeline.remote.network.AuthenticationService
 import javax.inject.Inject
 
 class CreateAccountUseCase @Inject constructor(
-    private val authenticationService: com.jlhg.wizeline.remote.network.AuthenticationService,
+    private val authenticationService: AuthenticationService,
 ) {
 
     suspend operator fun invoke(email: String, password: String): Boolean {
-        return authenticationService.createAccount(email, password) != null
+        return authenticationService.createAccount(email, password)
     }
 }

@@ -3,9 +3,9 @@ package com.jlhg.wizeline.remote.network
 import android.util.Log
 import com.jlhg.wizeline.remote.model.ListMoviesModel
 import com.jlhg.wizeline.remote.model.MovieDetailsModel
+import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 class ApiService @Inject constructor(private val apiClient: ApiClient) {
 
@@ -41,6 +41,4 @@ class ApiService @Inject constructor(private val apiClient: ApiClient) {
             response.body()
         }
     }
-
-
 }

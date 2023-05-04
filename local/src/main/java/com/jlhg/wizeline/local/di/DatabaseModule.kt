@@ -25,8 +25,8 @@ class DatabaseModule {
             Database::class.java,
             "movies.db"
         ).addTypeConverter(GenderConverter())
-        .addTypeConverter(LanguageConverter())
-        .build()
+            .addTypeConverter(LanguageConverter())
+            .build()
 
     @Provides
     fun providesMovieDao(database: Database): MovieDao =

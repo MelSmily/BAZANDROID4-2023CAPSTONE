@@ -36,17 +36,22 @@ fun LoginScreen(loginViewModel: LoginViewModel, navController: NavHostController
         Body(
             Modifier
                 .align(Alignment.Center)
-                .padding(horizontal = 16.dp), loginViewModel)
+                .padding(horizontal = 16.dp),
+            loginViewModel
+        )
         Footer(Modifier.align(Alignment.BottomCenter), navController)
         if (isLoading) {
             Loader()
         }
-        if (showErrorDialog){
-            ErrorDialog(stringResource(R.string.login_error_dialog_title), stringResource(R.string.login_error_dialog_body)) {
+        if (showErrorDialog) {
+            ErrorDialog(
+                stringResource(R.string.login_error_dialog_title),
+                stringResource(R.string.login_error_dialog_body)
+            ) {
                 loginViewModel.setShowErrorDialog(false)
             }
         }
-        if (goToHome){
+        if (goToHome) {
             loginViewModel.cleanData()
             context.startActivity(Intent(context, HomeActivity::class.java))
             (context as Activity).finish()
@@ -73,15 +78,19 @@ private fun Footer(modifier: Modifier, navController: NavHostController) {
 private fun SignUp(navController: NavHostController) {
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
         Text(
-            text = stringResource(id = R.string.login_footer_unselected), fontSize = 12.sp, color = MaterialTheme.colors.secondary
+            text = stringResource(id = R.string.login_footer_unselected),
+            fontSize = 12.sp,
+            color = MaterialTheme.colors.secondary
         )
         Text(
             text = stringResource(id = R.string.login_footer_selected),
-            Modifier.padding(horizontal = 8.dp).clickable(
-                onClick = {
-                    navController.navigate(LoginRoutes.Signin.route)
-                }
-            ),
+            Modifier
+                .padding(horizontal = 8.dp)
+                .clickable(
+                    onClick = {
+                        navController.navigate(LoginRoutes.Signin.route)
+                    }
+                ),
             fontSize = 12.sp,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colors.primary
@@ -106,7 +115,7 @@ private fun Body(modifier: Modifier, loginViewModel: LoginViewModel) {
             loginViewModel.onLoginChanged(email = email, password = it)
         }
         Spacer(modifier = Modifier.size(16.dp))
-        SignInButton(stringResource(id = R.string.login_button_login), isLoginEnable){
+        SignInButton(stringResource(id = R.string.login_button_login), isLoginEnable) {
             loginViewModel.loginUser()
         }
     }

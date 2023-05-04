@@ -8,12 +8,11 @@ import androidx.compose.ui.res.stringResource
 import com.jlhg.wizeline.capstoneproject.R
 
 @Composable
-fun ErrorDialog(title: String, text:String, onDismiss: () -> Unit) {
+fun ErrorDialog(title: String, text: String, onDismiss: () -> Unit) {
     AlertDialog(
         onDismissRequest = onDismiss,
         confirmButton = {
-            TextButton(onClick = onDismiss)
-            {
+            TextButton(onClick = onDismiss) {
                 Text(
                     text = stringResource(R.string.login_error_dialog_positive_action)
                 )

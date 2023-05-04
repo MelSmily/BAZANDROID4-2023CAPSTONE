@@ -2,7 +2,6 @@ package com.jlhg.wizeline.capstoneproject.ui.home.screen
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,14 +15,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
-import com.jlhg.wizeline.capstoneproject.R
 import com.jlhg.wizeline.capstoneproject.domain.model.MovieItem
 import com.jlhg.wizeline.capstoneproject.ui.common.ApiStatus
 import com.jlhg.wizeline.capstoneproject.ui.component.ErrorAnimation
@@ -52,8 +45,8 @@ fun LastestMovieScreen(homeViewModel: HomeViewModel) {
                     columns = GridCells.Adaptive(150.dp),
                     contentPadding = PaddingValues(10.dp)
                 ) {
-                    items(movies) {item ->
-                        MovieListItem(item){
+                    items(movies) { item ->
+                        MovieListItem(item) {
                             val intent = Intent(context, DetailActivity::class.java)
                             intent.putExtra(DetailActivity.MOVIE_ID, it)
                             context.startActivity(intent)

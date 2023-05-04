@@ -17,7 +17,7 @@ fun MovieListItem(movieItem: MovieItem, onClick: (Int) -> Unit) {
                 .height(300.dp)
                 .padding(4.dp)
                 .clickable(
-                    onClick = {onClick.invoke(movieItem.id)}
+                    onClick = { onClick.invoke(movieItem.id) }
                 )
         ) {
             AsyncImage(

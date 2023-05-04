@@ -4,9 +4,10 @@ import com.jlhg.wizeline.remote.network.AuthenticationService
 import com.jlhg.wizeline.remote.response.LoginResult
 import javax.inject.Inject
 
-class LoginUseCase @Inject constructor(private val authenticationService: com.jlhg.wizeline.remote.network.AuthenticationService) {
+class LoginUseCase @Inject constructor(
+    private val authenticationService: AuthenticationService
+) {
 
-    suspend operator fun invoke(email: String, password: String): com.jlhg.wizeline.remote.response.LoginResult =
+    suspend operator fun invoke(email: String, password: String): LoginResult =
         authenticationService.login(email, password)
-
 }

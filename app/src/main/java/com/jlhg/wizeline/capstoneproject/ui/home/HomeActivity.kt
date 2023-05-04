@@ -21,7 +21,7 @@ class HomeActivity : ComponentActivity() {
         setContent {
             MoviesTheme {
                 val goToLogin: Boolean by homeViewModel.goToLogin.observeAsState(initial = false)
-                if (goToLogin){
+                if (goToLogin) {
                     startActivity(Intent(this, LoginActivity::class.java))
                     finish()
                 }

@@ -117,7 +117,10 @@ private fun MovieDetailBody(movie: MovieDetail) {
                 imageVector = Icons.Filled.StarRate, contentDescription = "",
                 tint = MaterialTheme.colors.primary
             )
-            Text(text = stringResource(R.string.details_txt_rate, movie.voteAverage), color = MaterialTheme.colors.secondaryVariant)
+            Text(
+                text = stringResource(R.string.details_txt_rate, movie.voteAverage),
+                color = MaterialTheme.colors.secondaryVariant
+            )
         }
 
         MovieGenres(
@@ -138,18 +141,32 @@ private fun MovieDetailBody(movie: MovieDetail) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column {
-                Text(text = stringResource(R.string.detail_txt_duration), color = MaterialTheme.colors.secondaryVariant, fontSize = 16.sp)
+                Text(
+                    text = stringResource(R.string.detail_txt_duration),
+                    color = MaterialTheme.colors.secondaryVariant,
+                    fontSize = 16.sp
+                )
                 Text(text = "${movie.runtime.minutes}", color = MaterialTheme.colors.primary)
             }
             Column {
-                Text(text = stringResource(R.string.details_txt_lenguage), color = MaterialTheme.colors.secondaryVariant, fontSize = 16.sp)
-                Text(text = movie.spokenLanguages[0].englishName, color = MaterialTheme.colors.primary)
+                Text(
+                    text = stringResource(R.string.details_txt_lenguage),
+                    color = MaterialTheme.colors.secondaryVariant,
+                    fontSize = 16.sp
+                )
+                Text(
+                    text = movie.spokenLanguages[0].englishName,
+                    color = MaterialTheme.colors.primary
+                )
             }
             Column {
-                Text(text = stringResource(R.string.details_txt_status), color = MaterialTheme.colors.secondaryVariant, fontSize = 16.sp)
+                Text(
+                    text = stringResource(R.string.details_txt_status),
+                    color = MaterialTheme.colors.secondaryVariant,
+                    fontSize = 16.sp
+                )
                 Text(text = movie.status, color = MaterialTheme.colors.primary)
             }
-
         }
         MovieDescription(
             description = movie.overview,
@@ -169,14 +186,15 @@ private fun MovieGenres(
     LazyRow(
         modifier = modifier
     ) {
-        items(genres){genre ->
+        items(genres) { genre ->
             TextButton(
                 onClick = {},
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(
                     backgroundColor = MaterialTheme.colors.background,
                     contentColor = MaterialTheme.colors.primary
-                ), modifier = Modifier.padding(vertical = 4.dp, horizontal = 16.dp)
+                ),
+                modifier = Modifier.padding(vertical = 4.dp, horizontal = 16.dp)
             ) {
                 Text(text = genre.name, fontSize = 12.sp)
             }
@@ -191,7 +209,8 @@ private fun MovieDescription(
 ) {
     Column(modifier = modifier) {
         Text(
-            text = stringResource(R.string.details_txt_description), color = MaterialTheme.colors.secondaryVariant,
+            text = stringResource(R.string.details_txt_description),
+            color = MaterialTheme.colors.secondaryVariant,
             modifier = Modifier
                 .padding(start = 16.dp, top = 12.dp),
             fontWeight = FontWeight.Bold,

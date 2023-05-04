@@ -27,7 +27,7 @@ class LoginActivity : ComponentActivity() {
                     navController = navController,
                     startDestination = LoginRoutes.Login.route,
                 ) {
-                    composable(LoginRoutes.Login.route){
+                    composable(LoginRoutes.Login.route) {
                         LoginScreen(loginViewModel, navController)
                     }
                     composable(LoginRoutes.Signin.route) {
@@ -39,7 +39,7 @@ class LoginActivity : ComponentActivity() {
     }
 }
 
-sealed class  LoginRoutes(val route: String){
-    object Login: LoginRoutes("Login")
-    object Signin: LoginRoutes("Signin")
+sealed class LoginRoutes(val route: String) {
+    object Login : LoginRoutes("Login")
+    object Signin : LoginRoutes("Signin")
 }

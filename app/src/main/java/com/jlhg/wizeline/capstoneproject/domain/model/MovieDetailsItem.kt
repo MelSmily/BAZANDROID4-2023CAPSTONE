@@ -1,8 +1,8 @@
 package com.jlhg.wizeline.capstoneproject.domain.model
 
+import com.jlhg.wizeline.local.db.entities.MovieDetailsEntity
 import com.jlhg.wizeline.remote.Credentials
 import com.jlhg.wizeline.remote.model.MovieDetailsModel
-import com.jlhg.wizeline.local.db.entities.MovieDetailsEntity
 
 data class MovieDetail(
     val id: Int = 0,
@@ -30,15 +30,16 @@ data class Language(
     val name: String,
 )
 
-fun com.jlhg.wizeline.remote.model.MovieDetailsModel.toDomain(): MovieDetail {
+fun MovieDetailsModel.toDomain(): MovieDetail {
     return MovieDetail(
         id = id ?: 0,
-        backdropPath = if (backdropPath.isNullOrEmpty()) "" else "${com.jlhg.wizeline.remote.Credentials.PATH_IMG}${this.backdropPath}",
+        backdropPath = if (backdropPath.isNullOrEmpty()) ""
+        else "${Credentials.PATH_IMG}${this.backdropPath}",
         genres = genres!!.map { it.toDomain() },
         originalLanguage = originalLanguage ?: "",
         originalTitle = originalTitle ?: "",
         overview = overview ?: "",
-        posterPath = "${com.jlhg.wizeline.remote.Credentials.PATH_IMG}${this.posterPath}",
+        posterPath = "${Credentials.PATH_IMG}${this.posterPath}",
         runtime = runtime ?: 0,
         spokenLanguages = spokenLanguages.map { it.toDomain() },
         status = status,
@@ -47,15 +48,15 @@ fun com.jlhg.wizeline.remote.model.MovieDetailsModel.toDomain(): MovieDetail {
     )
 }
 
-private fun com.jlhg.wizeline.remote.model.Gender.toDomain(): Gender{
+private fun com.jlhg.wizeline.remote.model.Gender.toDomain(): Gender {
     return Gender(id, name)
 }
 
-private fun com.jlhg.wizeline.remote.model.Language.toDomain(): Language{
+private fun com.jlhg.wizeline.remote.model.Language.toDomain(): Language {
     return Language(englishName, iso, name)
 }
 
-fun com.jlhg.wizeline.local.db.entities.MovieDetailsEntity.toDomain(): MovieDetail {
+fun MovieDetailsEntity.toDomain(): MovieDetail {
     return MovieDetail(
         id = id,
         backdropPath = backdropPath,
@@ -72,16 +73,16 @@ fun com.jlhg.wizeline.local.db.entities.MovieDetailsEntity.toDomain(): MovieDeta
     )
 }
 
-private fun com.jlhg.wizeline.local.db.entities.Gender.toDomain(): Gender{
+private fun com.jlhg.wizeline.local.db.entities.Gender.toDomain(): Gender {
     return Gender(id, name)
 }
 
-private fun com.jlhg.wizeline.local.db.entities.Language.toDomain(): Language{
+private fun com.jlhg.wizeline.local.db.entities.Language.toDomain(): Language {
     return Language(englishName, iso, name)
 }
 
-fun MovieDetail.toMovieDetailsEntity(): com.jlhg.wizeline.local.db.entities.MovieDetailsEntity {
-    return com.jlhg.wizeline.local.db.entities.MovieDetailsEntity(
+fun MovieDetail.toMovieDetailsEntity(): MovieDetailsEntity {
+    return MovieDetailsEntity(
         id = id,
         backdropPath = backdropPath,
         genres = genres.map { it.toEntity() },

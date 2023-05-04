@@ -1,8 +1,8 @@
 package com.jlhg.wizeline.remote
 
+import java.util.Locale
 import okhttp3.Interceptor
 import okhttp3.Response
-import java.util.Locale
 
 internal class RequestInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {

@@ -12,15 +12,15 @@ class LanguageConverter {
     fun fromList(language: List<Language>): String {
         return Gson().toJson(
             language,
-            object: TypeToken<ArrayList<Language>>(){}.type
+            object : TypeToken<ArrayList<Language>>() {}.type
         ) ?: "[]"
     }
 
     @TypeConverter
-    fun toList(json: String): List<Language>{
+    fun toList(json: String): List<Language> {
         return Gson().fromJson<ArrayList<Language>>(
             json,
-            object: TypeToken<ArrayList<Language>>(){}.type
+            object : TypeToken<ArrayList<Language>>() {}.type
         ) ?: emptyList()
     }
 }

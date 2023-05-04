@@ -33,16 +33,21 @@ fun SignInScreen(loginViewModel: LoginViewModel, navController: NavHostControlle
         Body(
             Modifier
                 .align(Alignment.Center)
-                .padding(horizontal = 16.dp), loginViewModel)
+                .padding(horizontal = 16.dp),
+            loginViewModel
+        )
         if (isLoading) {
             Loader()
         }
-        if (showErrorDialog){
-            ErrorDialog(stringResource(R.string.signin_error_dialog_title), stringResource(R.string.signin_error_dialog_body)) {
+        if (showErrorDialog) {
+            ErrorDialog(
+                stringResource(R.string.signin_error_dialog_title),
+                stringResource(R.string.signin_error_dialog_body)
+            ) {
                 loginViewModel.setShowErrorDialog(false)
             }
         }
-        if (goToHome){
+        if (goToHome) {
             context.startActivity(Intent(context, HomeActivity::class.java))
             (context as Activity).finish()
         }
@@ -64,18 +69,26 @@ private fun Body(modifier: Modifier, loginViewModel: LoginViewModel) {
         ImageLogo(Modifier.align(Alignment.CenterHorizontally))
         Spacer(modifier = Modifier.size(16.dp))
         EmailField(email) {
-            loginViewModel.onSigninChanged(email = it, password = password, passwordConfirm = passwordConfirm)
+            loginViewModel.onSigninChanged(
+                email = it,
+                password = password,
+                passwordConfirm = passwordConfirm
+            )
         }
         Spacer(modifier = Modifier.size(16.dp))
         PasswordField(password) {
-            loginViewModel.onSigninChanged(email = email, password = it, passwordConfirm = passwordConfirm)
+            loginViewModel.onSigninChanged(
+                email = email,
+                password = it,
+                passwordConfirm = passwordConfirm
+            )
         }
         Spacer(modifier = Modifier.size(16.dp))
         PasswordField(passwordConfirm) {
             loginViewModel.onSigninChanged(email = email, password = password, passwordConfirm = it)
         }
         Spacer(modifier = Modifier.size(16.dp))
-        SignInButton(stringResource(id = R.string.signin_button), isSigninEnable){
+        SignInButton(stringResource(id = R.string.signin_button), isSigninEnable) {
             loginViewModel.signInUser()
         }
     }

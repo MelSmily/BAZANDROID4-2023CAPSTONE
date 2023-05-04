@@ -8,10 +8,10 @@ import com.jlhg.wizeline.capstoneproject.domain.usecases.db.InsertMovieDetailsTo
 import com.jlhg.wizeline.capstoneproject.domain.usecases.network.GetDetailsUseCase
 import com.jlhg.wizeline.capstoneproject.ui.common.ApiStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
@@ -39,12 +39,10 @@ class DetailsViewModel @Inject constructor(
                 if (movieDetail != null) {
                     _movieDetails.value = movieDetail
                     _status.value = ApiStatus.SUCCESS
-                }else {
+                } else {
                     _status.value = ApiStatus.ERROR
                 }
             }
-
         }
-
     }
 }

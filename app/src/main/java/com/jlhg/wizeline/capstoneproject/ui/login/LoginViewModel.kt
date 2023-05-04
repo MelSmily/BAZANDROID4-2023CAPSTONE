@@ -5,13 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jlhg.wizeline.remote.response.LoginResult
 import com.jlhg.wizeline.capstoneproject.domain.usecases.network.CreateAccountUseCase
 import com.jlhg.wizeline.capstoneproject.domain.usecases.network.GetUserLoggedUseCase
 import com.jlhg.wizeline.capstoneproject.domain.usecases.network.LoginUseCase
+import com.jlhg.wizeline.remote.response.LoginResult
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.*
 import javax.inject.Inject
+import kotlinx.coroutines.*
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
@@ -77,10 +77,10 @@ class LoginViewModel @Inject constructor(
         viewModelScope.launch {
             _isLoading.postValue(false)
             when (loginUseCase(email.value!!, password.value!!)) {
-                com.jlhg.wizeline.remote.response.LoginResult.Error -> {
+                LoginResult.Error -> {
                     setShowErrorDialog(true)
                 }
-                is com.jlhg.wizeline.remote.response.LoginResult.Success -> {
+                is LoginResult.Success -> {
                     _goToHome.postValue(true)
                 }
             }
