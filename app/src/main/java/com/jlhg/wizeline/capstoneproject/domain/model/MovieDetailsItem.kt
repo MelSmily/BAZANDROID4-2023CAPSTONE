@@ -1,5 +1,6 @@
 package com.jlhg.wizeline.capstoneproject.domain.model
 
+import com.jlhg.wizeline.local.db.entities.GenderEntity
 import com.jlhg.wizeline.local.db.entities.MovieDetailsEntity
 import com.jlhg.wizeline.remote.Credentials
 import com.jlhg.wizeline.remote.model.MovieDetailsModel
@@ -16,12 +17,12 @@ data class MovieDetail(
     val spokenLanguages: List<Language> = listOf(),
     val status: String = "",
     val voteAverage: Double = 0.0,
-    val voteCount: Int = 0
+    val voteCount: Int = 0,
 )
 
 data class Gender(
     val id: Int,
-    val name: String
+    val name: String,
 )
 
 data class Language(
@@ -33,8 +34,11 @@ data class Language(
 fun MovieDetailsModel.toDomain(): MovieDetail {
     return MovieDetail(
         id = id ?: 0,
-        backdropPath = if (backdropPath.isNullOrEmpty()) ""
-        else "${Credentials.PATH_IMG}${this.backdropPath}",
+        backdropPath = if (backdropPath.isNullOrEmpty()) {
+            ""
+        } else {
+            "${Credentials.PATH_IMG}${this.backdropPath}"
+        },
         genres = genres!!.map { it.toDomain() },
         originalLanguage = originalLanguage ?: "",
         originalTitle = originalTitle ?: "",
@@ -44,7 +48,7 @@ fun MovieDetailsModel.toDomain(): MovieDetail {
         spokenLanguages = spokenLanguages.map { it.toDomain() },
         status = status,
         voteAverage = voteAverage,
-        voteCount = voteCount
+        voteCount = voteCount,
     )
 }
 
@@ -54,6 +58,10 @@ private fun com.jlhg.wizeline.remote.model.Gender.toDomain(): Gender {
 
 private fun com.jlhg.wizeline.remote.model.Language.toDomain(): Language {
     return Language(englishName, iso, name)
+}
+
+fun GenderEntity.toDomain(): Gender {
+    return Gender(id, name)
 }
 
 fun MovieDetailsEntity.toDomain(): MovieDetail {
@@ -69,7 +77,7 @@ fun MovieDetailsEntity.toDomain(): MovieDetail {
         spokenLanguages = spokenLanguages.map { it.toDomain() },
         status = status,
         voteAverage = voteAverage,
-        voteCount = voteCount
+        voteCount = voteCount,
     )
 }
 
@@ -94,7 +102,7 @@ fun MovieDetail.toMovieDetailsEntity(): MovieDetailsEntity {
         spokenLanguages = spokenLanguages.map { it.toEntity() },
         status = status,
         voteAverage = voteAverage,
-        voteCount = voteCount
+        voteCount = voteCount,
     )
 }
 

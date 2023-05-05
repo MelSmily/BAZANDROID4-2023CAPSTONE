@@ -1,16 +1,33 @@
 package com.jlhg.wizeline.capstoneproject.ui.detail
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.StarRate
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -32,7 +49,7 @@ import kotlin.time.Duration.Companion.minutes
 @Composable
 fun DetailScreen(
     viewModel: DetailsViewModel,
-    id: Int
+    id: Int,
 ) {
     LaunchedEffect(Unit) {
         viewModel.getAllDetails(id)
@@ -42,7 +59,7 @@ fun DetailScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = MaterialTheme.colors.background)
+            .background(color = MaterialTheme.colors.background),
     ) {
         when (status) {
             ApiStatus.SUCCESS -> {
@@ -66,7 +83,7 @@ private fun MovieDetailBody(movie: MovieDetail) {
             .background(color = MaterialTheme.colors.surface)
             .verticalScroll(rememberScrollState())
             .navigationBarsPadding()
-            .padding(horizontal = 8.dp, vertical = 12.dp)
+            .padding(horizontal = 8.dp, vertical = 12.dp),
     ) {
         val genres = remember {
             mutableStateOf(movie.genres)
@@ -83,7 +100,7 @@ private fun MovieDetailBody(movie: MovieDetail) {
                 .height(350.dp)
                 .clip(RoundedCornerShape(bottomStart = 32.dp, bottomEnd = 32.dp))
                 .constrainAs(backdrop) {},
-            contentScale = ContentScale.FillHeight
+            contentScale = ContentScale.FillHeight,
         )
 
         AsyncImage(
@@ -96,7 +113,7 @@ private fun MovieDetailBody(movie: MovieDetail) {
                 .constrainAs(poster) {
                     centerAround(backdrop.bottom)
                     linkTo(start = parent.start, end = parent.end)
-                }
+                },
         )
         Text(
             text = movie.originalTitle,
@@ -104,22 +121,23 @@ private fun MovieDetailBody(movie: MovieDetail) {
                 linkTo(start = parent.start, end = parent.end)
                 top.linkTo(poster.bottom, margin = 4.dp)
             },
-            color = MaterialTheme.colors.primary
+            color = MaterialTheme.colors.primary,
         )
         Row(
             modifier = Modifier.constrainAs(rateScore) {
                 top.linkTo(originalTitle.bottom, margin = 4.dp)
                 linkTo(start = parent.start, end = parent.end)
             },
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(
-                imageVector = Icons.Filled.StarRate, contentDescription = "",
-                tint = MaterialTheme.colors.primary
+                imageVector = Icons.Filled.StarRate,
+                contentDescription = "",
+                tint = MaterialTheme.colors.primary,
             )
             Text(
                 text = stringResource(R.string.details_txt_rate, movie.voteAverage),
-                color = MaterialTheme.colors.secondaryVariant
+                color = MaterialTheme.colors.secondaryVariant,
             )
         }
 
@@ -128,7 +146,7 @@ private fun MovieDetailBody(movie: MovieDetail) {
             modifier = Modifier.constrainAs(genresFlowRow) {
                 linkTo(start = parent.start, end = parent.end)
                 top.linkTo(rateScore.bottom, margin = 4.dp)
-            }
+            },
         )
         Row(
             modifier = Modifier
@@ -138,13 +156,13 @@ private fun MovieDetailBody(movie: MovieDetail) {
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Column {
                 Text(
                     text = stringResource(R.string.detail_txt_duration),
                     color = MaterialTheme.colors.secondaryVariant,
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
                 )
                 Text(text = "${movie.runtime.minutes}", color = MaterialTheme.colors.primary)
             }
@@ -152,18 +170,18 @@ private fun MovieDetailBody(movie: MovieDetail) {
                 Text(
                     text = stringResource(R.string.details_txt_lenguage),
                     color = MaterialTheme.colors.secondaryVariant,
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
                 )
                 Text(
                     text = movie.spokenLanguages[0].englishName,
-                    color = MaterialTheme.colors.primary
+                    color = MaterialTheme.colors.primary,
                 )
             }
             Column {
                 Text(
                     text = stringResource(R.string.details_txt_status),
                     color = MaterialTheme.colors.secondaryVariant,
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
                 )
                 Text(text = movie.status, color = MaterialTheme.colors.primary)
             }
@@ -173,7 +191,7 @@ private fun MovieDetailBody(movie: MovieDetail) {
             modifier = Modifier.constrainAs(description) {
                 top.linkTo(row.bottom, margin = 8.dp)
                 linkTo(start = parent.start, end = parent.end)
-            }
+            },
         )
     }
 }
@@ -181,10 +199,10 @@ private fun MovieDetailBody(movie: MovieDetail) {
 @Composable
 private fun MovieGenres(
     modifier: Modifier = Modifier,
-    genres: List<Gender>
+    genres: List<Gender>,
 ) {
     LazyRow(
-        modifier = modifier
+        modifier = modifier,
     ) {
         items(genres) { genre ->
             TextButton(
@@ -192,9 +210,9 @@ private fun MovieGenres(
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(
                     backgroundColor = MaterialTheme.colors.background,
-                    contentColor = MaterialTheme.colors.primary
+                    contentColor = MaterialTheme.colors.primary,
                 ),
-                modifier = Modifier.padding(vertical = 4.dp, horizontal = 16.dp)
+                modifier = Modifier.padding(vertical = 4.dp, horizontal = 16.dp),
             ) {
                 Text(text = genre.name, fontSize = 12.sp)
             }
@@ -205,7 +223,7 @@ private fun MovieGenres(
 @Composable
 private fun MovieDescription(
     description: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
         Text(
@@ -219,7 +237,8 @@ private fun MovieDescription(
         Text(
             text = description,
             modifier = Modifier.padding(start = 16.dp, top = 8.dp),
-            color = MaterialTheme.colors.primary, style = MaterialTheme.typography.body2
+            color = MaterialTheme.colors.primary,
+            style = MaterialTheme.typography.body2,
         )
     }
 }

@@ -8,16 +8,16 @@ import androidx.lifecycle.viewModelScope
 import com.jlhg.wizeline.capstoneproject.domain.usecases.network.CreateAccountUseCase
 import com.jlhg.wizeline.capstoneproject.domain.usecases.network.GetUserLoggedUseCase
 import com.jlhg.wizeline.capstoneproject.domain.usecases.network.LoginUseCase
-import com.jlhg.wizeline.remote.response.LoginResult
+import com.jlhg.wizeline.remote.model.LoginResult
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlinx.coroutines.*
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
     private val createAccountUseCase: CreateAccountUseCase,
-    private val getUserLoggedUseCase: GetUserLoggedUseCase
+    private val getUserLoggedUseCase: GetUserLoggedUseCase,
 ) : ViewModel() {
 
     private val _email = MutableLiveData<String>()

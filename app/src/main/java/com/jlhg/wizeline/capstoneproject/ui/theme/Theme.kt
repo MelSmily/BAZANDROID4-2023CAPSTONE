@@ -10,7 +10,7 @@ private val DarkColorPalette = darkColors(
     primaryVariant = Green,
     secondary = Grey,
     secondaryVariant = GreyLight,
-    error = Red
+    error = Red,
 )
 
 @Composable
@@ -21,6 +21,6 @@ fun MoviesTheme(content: @Composable () -> Unit) {
         colors = colors,
         typography = Typography,
         shapes = Shapes,
-        content = content
+        content = content,
     )
 }

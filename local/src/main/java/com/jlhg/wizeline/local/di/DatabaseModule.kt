@@ -23,7 +23,7 @@ class DatabaseModule {
         Room.databaseBuilder(
             context,
             Database::class.java,
-            "movies.db"
+            "movies.db",
         ).addTypeConverter(GenderConverter())
             .addTypeConverter(LanguageConverter())
             .build()

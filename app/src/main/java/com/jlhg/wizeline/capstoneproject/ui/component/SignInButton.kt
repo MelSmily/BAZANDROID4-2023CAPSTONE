@@ -18,8 +18,8 @@ fun SignInButton(text: String, enable: Boolean, onClick: () -> Unit) {
             backgroundColor = MaterialTheme.colors.primary,
             disabledBackgroundColor = MaterialTheme.colors.secondary,
             contentColor = Color.White,
-            disabledContentColor = Color.White
-        )
+            disabledContentColor = Color.White,
+        ),
     ) {
         Text(text)
     }

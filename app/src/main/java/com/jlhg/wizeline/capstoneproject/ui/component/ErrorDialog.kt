@@ -14,11 +14,11 @@ fun ErrorDialog(title: String, text: String, onDismiss: () -> Unit) {
         confirmButton = {
             TextButton(onClick = onDismiss) {
                 Text(
-                    text = stringResource(R.string.login_error_dialog_positive_action)
+                    text = stringResource(R.string.login_error_dialog_positive_action),
                 )
             }
         },
         title = { Text(title) },
-        text = { Text(text) }
+        text = { Text(text) },
     )
 }

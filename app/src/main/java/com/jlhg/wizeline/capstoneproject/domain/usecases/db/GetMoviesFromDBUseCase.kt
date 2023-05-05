@@ -6,7 +6,7 @@ import com.jlhg.wizeline.local.db.DatabaseRepository
 import javax.inject.Inject
 
 class GetMoviesFromDBUseCase @Inject constructor(
-    private val databaseRepository: DatabaseRepository
+    private val databaseRepository: DatabaseRepository,
 ) {
     suspend fun getNowPlayingMovies(): MutableList<MovieItem> {
         return databaseRepository.getNowPlayingMovies()

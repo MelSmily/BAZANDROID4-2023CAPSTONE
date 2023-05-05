@@ -6,7 +6,7 @@ import com.jlhg.wizeline.remote.network.MovieRepository
 import javax.inject.Inject
 
 class GetMoviesUseCase @Inject constructor(
-    private val movieRepository: com.jlhg.wizeline.remote.network.MovieRepository
+    private val movieRepository: com.jlhg.wizeline.remote.network.MovieRepository,
 ) {
 
     suspend fun getTopRatedMovies(page: Int): MutableList<MovieItem> {

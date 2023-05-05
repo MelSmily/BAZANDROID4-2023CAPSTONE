@@ -37,13 +37,13 @@ fun LastestMovieScreen(homeViewModel: HomeViewModel) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .wrapContentSize(Alignment.Center)
+            .wrapContentSize(Alignment.Center),
     ) {
         when (status) {
             ApiStatus.SUCCESS -> {
                 LazyVerticalGrid(
                     columns = GridCells.Adaptive(150.dp),
-                    contentPadding = PaddingValues(10.dp)
+                    contentPadding = PaddingValues(10.dp),
                 ) {
                     items(movies) { item ->
                         MovieListItem(item) {

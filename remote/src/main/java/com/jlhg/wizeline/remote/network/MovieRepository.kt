@@ -5,7 +5,7 @@ import com.jlhg.wizeline.remote.model.MovieDetailsModel
 import javax.inject.Inject
 
 class MovieRepository @Inject constructor(
-    private val apiService: ApiService
+    private val apiService: ApiService,
 ) {
 
     suspend fun getTopRatedMovies(page: Int): ListMoviesModel? {

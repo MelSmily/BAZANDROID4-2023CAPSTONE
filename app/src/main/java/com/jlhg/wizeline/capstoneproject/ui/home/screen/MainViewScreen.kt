@@ -3,7 +3,12 @@ package com.jlhg.wizeline.capstoneproject.ui.home.screen
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.*
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -30,7 +35,7 @@ fun MainViewScreen(homeViewModel: HomeViewModel) {
                 homeViewModel.logoutUser()
             }
         },
-        bottomBar = { BottomNavigation(navController = navController) }
+        bottomBar = { BottomNavigation(navController = navController) },
     ) {
         NavigationGraph(navController = navController, homeViewModel)
     }
@@ -41,11 +46,11 @@ fun BottomNavigation(navController: NavController) {
     val items = listOf(
         BottomNavItem.NowPlaying,
         BottomNavItem.Latest,
-        BottomNavItem.TopRated
+        BottomNavItem.TopRated,
     )
     BottomNavigation(
         backgroundColor = MaterialTheme.colors.background,
-        contentColor = MaterialTheme.colors.primary
+        contentColor = MaterialTheme.colors.primary,
     ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
@@ -57,13 +62,13 @@ fun BottomNavigation(navController: NavController) {
                         contentDescription = item.title,
                         modifier = Modifier
                             .height(24.dp)
-                            .width(24.dp)
+                            .width(24.dp),
                     )
                 },
                 label = {
                     Text(
                         text = item.title,
-                        fontSize = 12.sp
+                        fontSize = 12.sp,
                     )
                 },
                 selectedContentColor = MaterialTheme.colors.primary,
@@ -78,7 +83,7 @@ fun BottomNavigation(navController: NavController) {
                         launchSingleTop = true
                         restoreState = true
                     }
-                }
+                },
             )
         }
     }

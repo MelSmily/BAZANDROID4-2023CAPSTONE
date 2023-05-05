@@ -1,13 +1,15 @@
 package com.jlhg.wizeline.local.db
 
+import com.jlhg.wizeline.local.db.entities.GenderEntity
 import com.jlhg.wizeline.local.db.entities.LastestMoviesEntity
 import com.jlhg.wizeline.local.db.entities.MovieDetailsEntity
 import com.jlhg.wizeline.local.db.entities.NowPlayingMoviesEntity
 import com.jlhg.wizeline.local.db.entities.TopRatedMoviesEntity
+import com.jlhg.wizeline.local.db.entities.toGenderEntity
 import javax.inject.Inject
 
 class DatabaseRepository @Inject constructor(
-    private val movieDao: MovieDao
+    private val movieDao: MovieDao,
 ) {
     suspend fun getNowPlayingMovies(): List<NowPlayingMoviesEntity> {
         return movieDao.getNowPlayingMovies()
@@ -39,5 +41,10 @@ class DatabaseRepository @Inject constructor(
 
     suspend fun insertMovieDetails(movieDetails: MovieDetailsEntity) {
         movieDao.insertMovieDetails(movieDetails)
+        movieDao.insertMovieGenders(movieDetails.genres.map { it.toGenderEntity(movieDetails.id) })
+    }
+
+    suspend fun getMovieGenders(id: Int): List<GenderEntity> {
+        return movieDao.getMovieGenders(id)
     }
 }

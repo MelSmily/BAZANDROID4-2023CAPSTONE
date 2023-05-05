@@ -8,16 +8,16 @@ import com.jlhg.wizeline.capstoneproject.domain.usecases.db.InsertMovieDetailsTo
 import com.jlhg.wizeline.capstoneproject.domain.usecases.network.GetDetailsUseCase
 import com.jlhg.wizeline.capstoneproject.ui.common.ApiStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
     private val getDetailsUseCase: GetDetailsUseCase,
     private val insertMovieDetailsToDBUseCase: InsertMovieDetailsToDBUseCase,
-    private val getMovieDetailsFromDBUseCase: GetMovieDetailsFromDBUseCase
+    private val getMovieDetailsFromDBUseCase: GetMovieDetailsFromDBUseCase,
 ) : ViewModel() {
 
     private var _movieDetails = MutableStateFlow(MovieDetail())
@@ -36,6 +36,8 @@ class DetailsViewModel @Inject constructor(
                 _status.value = ApiStatus.SUCCESS
             } catch (e: Exception) {
                 val movieDetail = getMovieDetailsFromDBUseCase.getMovieDetails(id)
+                val movieGenders = getMovieDetailsFromDBUseCase.getMovieGenders(id)
+                println(movieGenders.toString())
                 if (movieDetail != null) {
                     _movieDetails.value = movieDetail
                     _status.value = ApiStatus.SUCCESS

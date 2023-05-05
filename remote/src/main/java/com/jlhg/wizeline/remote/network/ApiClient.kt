@@ -11,17 +11,17 @@ interface ApiClient {
 
     @GET(value = "movie/now_playing?")
     suspend fun getNowPlayingMovies(
-        @Query("page") page: Int = 1
+        @Query("page") page: Int = 1,
     ): Response<ListMoviesModel>
 
     @GET(value = "movie/upcoming?")
     suspend fun getLastestMovies(
-        @Query("page") page: Int = 1
+        @Query("page") page: Int = 1,
     ): Response<ListMoviesModel>
 
     @GET(value = "movie/top_rated?")
     suspend fun getTopRatedMovies(
-        @Query("page") page: Int = 1
+        @Query("page") page: Int = 1,
     ): Response<ListMoviesModel>
 
     @GET("movie/{movieId}?")

@@ -27,7 +27,7 @@ fun EmailField(email: String, onTextChanged: (String) -> Unit) {
             textColor = MaterialTheme.colors.secondary,
             backgroundColor = MaterialTheme.colors.background,
             focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent
-        )
+            unfocusedIndicatorColor = Color.Transparent,
+        ),
     )
 }

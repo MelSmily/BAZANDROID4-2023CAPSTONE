@@ -1,10 +1,10 @@
 package com.jlhg.wizeline.remote.network
 
 import com.google.firebase.auth.AuthResult
-import com.jlhg.wizeline.remote.response.LoginResult
+import com.jlhg.wizeline.remote.model.LoginResult
+import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 import javax.inject.Singleton
-import kotlinx.coroutines.tasks.await
 
 @Singleton
 class AuthenticationService @Inject constructor(private val firebase: FirebaseClient) {

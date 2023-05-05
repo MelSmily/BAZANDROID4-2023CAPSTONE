@@ -1,17 +1,20 @@
 package com.jlhg.wizeline.capstoneproject.domain.usecases.db
 
-import com.jlhg.wizeline.capstoneproject.domain.model.*
+import com.jlhg.wizeline.capstoneproject.domain.model.MovieItem
+import com.jlhg.wizeline.capstoneproject.domain.model.toLastestMoviesEntity
+import com.jlhg.wizeline.capstoneproject.domain.model.toNowPlayingMoviesEntity
+import com.jlhg.wizeline.capstoneproject.domain.model.toTopRatedMoviesEntity
 import com.jlhg.wizeline.local.db.DatabaseRepository
 import javax.inject.Inject
 
 class InsertMoviesToDBUseCase @Inject constructor(
-    private val databaseRepository: DatabaseRepository
+    private val databaseRepository: DatabaseRepository,
 ) {
     suspend fun insertNowPlayingMovies(movies: MutableList<MovieItem>) {
         databaseRepository.insertNowPlayingMovies(
             movies.map {
                 it.toNowPlayingMoviesEntity()
-            }
+            },
         )
     }
 
@@ -19,7 +22,7 @@ class InsertMoviesToDBUseCase @Inject constructor(
         databaseRepository.insertTopRatedMovies(
             movies.map {
                 it.toTopRatedMoviesEntity()
-            }
+            },
         )
     }
 
@@ -27,7 +30,7 @@ class InsertMoviesToDBUseCase @Inject constructor(
         databaseRepository.insertLastestMovies(
             movies.map {
                 it.toLastestMoviesEntity()
-            }
+            },
         )
     }
 }

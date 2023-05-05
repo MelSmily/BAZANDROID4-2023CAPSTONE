@@ -4,7 +4,7 @@ import com.jlhg.wizeline.remote.network.AuthenticationService
 import javax.inject.Inject
 
 class GetUserLoggedUseCase @Inject constructor(
-    private val authenticationService: AuthenticationService
+    private val authenticationService: AuthenticationService,
 ) {
 
     suspend operator fun invoke(): Boolean {

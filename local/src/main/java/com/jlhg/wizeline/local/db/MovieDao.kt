@@ -1,6 +1,11 @@
 package com.jlhg.wizeline.local.db
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import androidx.room.Transaction
+import com.jlhg.wizeline.local.db.entities.GenderEntity
 import com.jlhg.wizeline.local.db.entities.LastestMoviesEntity
 import com.jlhg.wizeline.local.db.entities.MovieDetailsEntity
 import com.jlhg.wizeline.local.db.entities.NowPlayingMoviesEntity
@@ -31,4 +36,11 @@ interface MovieDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMovieDetails(movieDetails: MovieDetailsEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertMovieGenders(movieGender: List<GenderEntity>)
+
+    @Transaction
+    @Query("SELECT * FROM movie_genders WHERE idMovie = :idMovie")
+    suspend fun getMovieGenders(idMovie: Int): List<GenderEntity>
 }

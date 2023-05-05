@@ -2,7 +2,10 @@ package com.jlhg.wizeline.capstoneproject.ui.home.screen
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -35,13 +38,13 @@ fun NowPlayingScreen(homeViewModel: HomeViewModel) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .wrapContentSize(Alignment.Center)
+            .wrapContentSize(Alignment.Center),
     ) {
         when (status) {
             ApiStatus.SUCCESS -> {
                 LazyVerticalGrid(
                     columns = GridCells.Adaptive(150.dp),
-                    contentPadding = PaddingValues(10.dp)
+                    contentPadding = PaddingValues(10.dp),
                 ) {
                     items(movies) { item ->
                         MovieListItem(item) {

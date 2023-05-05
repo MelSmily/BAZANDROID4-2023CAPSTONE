@@ -11,6 +11,6 @@ fun ImageLogo(modifier: Modifier) {
     Image(
         painter = painterResource(id = R.drawable.logo),
         contentDescription = "logo",
-        modifier = modifier
+        modifier = modifier,
     )
 }

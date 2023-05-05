@@ -11,15 +11,15 @@ import com.jlhg.wizeline.capstoneproject.domain.usecases.network.GetMoviesUseCas
 import com.jlhg.wizeline.capstoneproject.domain.usecases.network.LogoutUseCase
 import com.jlhg.wizeline.capstoneproject.ui.common.ApiStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getMoviesUseCase: GetMoviesUseCase,
     private val logoutUseCase: LogoutUseCase,
     private val insertMoviesToDBUseCase: InsertMoviesToDBUseCase,
-    private val getMoviesFromDBUseCase: GetMoviesFromDBUseCase
+    private val getMoviesFromDBUseCase: GetMoviesFromDBUseCase,
 ) : ViewModel() {
 
     private var page = 1

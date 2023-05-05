@@ -12,7 +12,7 @@ class GenderConverter {
     fun fromList(gender: List<Gender>): String {
         return Gson().toJson(
             gender,
-            object : TypeToken<ArrayList<Gender>>() {}.type
+            object : TypeToken<ArrayList<Gender>>() {}.type,
         ) ?: "[]"
     }
 
@@ -20,7 +20,7 @@ class GenderConverter {
     fun toList(json: String): List<Gender> {
         return Gson().fromJson<ArrayList<Gender>>(
             json,
-            object : TypeToken<ArrayList<Gender>>() {}.type
+            object : TypeToken<ArrayList<Gender>>() {}.type,
         ) ?: emptyList()
     }
 }

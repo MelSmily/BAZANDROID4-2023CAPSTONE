@@ -18,14 +18,14 @@ data class MovieDetailsEntity(
     val spokenLanguages: List<Language>,
     val status: String,
     val voteAverage: Double,
-    val voteCount: Int
+    val voteCount: Int,
 )
 
 data class Gender(
     @SerializedName("id")
     val id: Int,
     @SerializedName("name")
-    val name: String
+    val name: String,
 )
 
 data class Language(

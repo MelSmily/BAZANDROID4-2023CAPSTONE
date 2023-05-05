@@ -6,7 +6,7 @@ import com.jlhg.wizeline.local.db.DatabaseRepository
 import javax.inject.Inject
 
 class InsertMovieDetailsToDBUseCase @Inject constructor(
-    private val databaseRepository: com.jlhg.wizeline.local.db.DatabaseRepository
+    private val databaseRepository: DatabaseRepository,
 ) {
     suspend fun insertMovieDetails(movieDetails: MovieDetail) {
         databaseRepository.insertMovieDetails(movieDetails.toMovieDetailsEntity())

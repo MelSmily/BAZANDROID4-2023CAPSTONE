@@ -1,6 +1,10 @@
 package com.jlhg.wizeline.capstoneproject.ui.component
 
-import androidx.compose.material.*
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ExitToApp
 import androidx.compose.runtime.Composable
@@ -16,18 +20,18 @@ fun TopBar(onClick: () -> Unit) {
         },
         actions = {
             TopAppBarActionButton(
-                onClick = onClick
+                onClick = onClick,
             )
         },
         backgroundColor = MaterialTheme.colors.background,
         contentColor = MaterialTheme.colors.primary,
-        elevation = 8.dp
+        elevation = 8.dp,
     )
 }
 
 @Composable
 private fun TopAppBarActionButton(
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     IconButton(onClick = {
         onClick()
@@ -35,7 +39,7 @@ private fun TopAppBarActionButton(
         Icon(
             imageVector = Icons.Outlined.ExitToApp,
             contentDescription = "Logout",
-            tint = MaterialTheme.colors.primary
+            tint = MaterialTheme.colors.primary,
         )
     }
 }
