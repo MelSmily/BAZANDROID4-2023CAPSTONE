@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jlhg.wizeline.capstoneproject.domain.usecases.network.CreateAccountUseCase
-import com.jlhg.wizeline.capstoneproject.domain.usecases.network.GetUserLoggedUseCase
 import com.jlhg.wizeline.capstoneproject.domain.usecases.network.LoginUseCase
 import com.jlhg.wizeline.remote.model.LoginResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,7 +16,6 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     private val loginUseCase: LoginUseCase,
     private val createAccountUseCase: CreateAccountUseCase,
-    private val getUserLoggedUseCase: GetUserLoggedUseCase,
 ) : ViewModel() {
 
     private val _email = MutableLiveData<String>()
@@ -37,10 +35,6 @@ class LoginViewModel @Inject constructor(
     val isLoading: LiveData<Boolean> get() = _isLoading
     val showErrorDialog: LiveData<Boolean> get() = _showErrorDialog
     val goToHome: LiveData<Boolean> get() = _goToHome
-
-    init {
-        getLoggedUser()
-    }
 
     fun onLoginChanged(email: String, password: String) {
         _email.value = email
@@ -96,14 +90,6 @@ class LoginViewModel @Inject constructor(
             } else {
                 setShowErrorDialog(true)
             }
-        }
-    }
-
-    private fun getLoggedUser() {
-        _isLoading.value = true
-        viewModelScope.launch {
-            _isLoading.postValue(false)
-            _goToHome.postValue(getUserLoggedUseCase.invoke())
         }
     }
 }
