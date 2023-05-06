@@ -7,7 +7,7 @@ class GetUserLoggedUseCase @Inject constructor(
     private val authenticationService: AuthenticationService,
 ) {
 
-    suspend operator fun invoke(): Boolean {
+    operator fun invoke(): Boolean {
         return authenticationService.currentUser()
     }
 }

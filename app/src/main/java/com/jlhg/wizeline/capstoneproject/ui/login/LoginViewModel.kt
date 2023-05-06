@@ -1,5 +1,6 @@
 package com.jlhg.wizeline.capstoneproject.ui.login
 
+import android.annotation.SuppressLint
 import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,8 +8,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jlhg.wizeline.capstoneproject.domain.usecases.network.CreateAccountUseCase
 import com.jlhg.wizeline.capstoneproject.domain.usecases.network.LoginUseCase
-import com.jlhg.wizeline.remote.model.LoginResult
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers.io
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -66,19 +68,18 @@ class LoginViewModel @Inject constructor(
         Patterns.EMAIL_ADDRESS.matcher(email)
             .matches() && password.length > 6 && passwordConfirm == password
 
+    @SuppressLint("CheckResult")
     fun loginUser() {
         _isLoading.value = true
-        viewModelScope.launch {
-            _isLoading.postValue(false)
-            when (loginUseCase(email.value!!, password.value!!)) {
-                LoginResult.Error -> {
-                    setShowErrorDialog(true)
-                }
-                is LoginResult.Success -> {
-                    _goToHome.postValue(true)
-                }
-            }
-        }
+        loginUseCase(email.value!!, password.value!!)
+            .subscribeOn(io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                _isLoading.postValue(false)
+                _goToHome.postValue(true)
+            }, {
+                setShowErrorDialog(true)
+            })
     }
 
     fun signInUser() {
