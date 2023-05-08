@@ -4,10 +4,10 @@ import com.jlhg.wizeline.remote.network.AuthenticationService
 import javax.inject.Inject
 
 class LogoutUseCase @Inject constructor(
-    private val authenticationService: com.jlhg.wizeline.remote.network.AuthenticationService,
+    private val authenticationService: AuthenticationService,
 ) {
 
-    suspend operator fun invoke() {
+    operator fun invoke() {
         authenticationService.logout()
     }
 }

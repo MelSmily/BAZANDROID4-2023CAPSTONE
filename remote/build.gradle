@@ -47,9 +47,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+//    apply from: "$project.rootDir/config/jacoco.gradle"
 }
 
-tasks.getByPath("preBuild").dependsOn("ktlintFormat")
+//tasks.getByPath("preBuild").dependsOn("ktlintFormat")
 
 dependencies {
 

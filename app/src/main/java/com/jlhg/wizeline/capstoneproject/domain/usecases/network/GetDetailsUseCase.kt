@@ -6,7 +6,7 @@ import com.jlhg.wizeline.remote.network.MovieRepository
 import javax.inject.Inject
 
 class GetDetailsUseCase @Inject constructor(
-    private val movieRepository: com.jlhg.wizeline.remote.network.MovieRepository,
+    private val movieRepository: MovieRepository,
 ) {
 
     suspend fun getDetails(id: Int): MovieDetail? {
